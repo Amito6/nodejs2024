@@ -14,7 +14,10 @@
     <input type="password" name="password" id="password">
     <br><br>
     <input type="submit" value="Submit">
+    <br><br>
+    <h2 style="color: red;"></h2>
     </form>
+    
 
 <script>
     let form = document.querySelector("#testingForm");
@@ -22,14 +25,23 @@
         e.preventDefault();
         let username = document.querySelector("#username").value;
         let password = document.querySelector("#password").value;
-        let url = "http://localhost:5020/?username="+username+"&password="+password;
+        let url = "http://localhost:5020";
         let ajax = new XMLHttpRequest();
-        ajax.open("GET",url,true);
-        ajax.send();
+        ajax.open("POST",url,true);
+        ajax.send("username="+username+"&password="+password);
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4){
-                console.log(ajax.response);
+                console.log(ajax.response)
+                let res = JSON.parse(ajax.response);
+                if(res.message == "Post requested Login SuccessFull"){
+                    window.location = "https://www.google.com";
+                }
+                else
+                {
+                document.querySelector("h2").innerHTML = res.message;
+                }
             }
+           
         }
         form.reset("");
     }
