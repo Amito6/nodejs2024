@@ -17,35 +17,7 @@
     <br><br>
     <h2 style="color: red;"></h2>
     </form>
-    
 
-<script>
-    let form = document.querySelector("#testingForm");
-    form.onsubmit = function(e){
-        e.preventDefault();
-        let username = document.querySelector("#username").value;
-        let password = document.querySelector("#password").value;
-        let url = "http://localhost:5020";
-        let ajax = new XMLHttpRequest();
-        ajax.open("POST",url,true);
-        ajax.send("username="+username+"&password="+password);
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4){
-                console.log(ajax.response)
-                let res = JSON.parse(ajax.response);
-                if(res.message == "Post requested Login SuccessFull"){
-                    window.location = "https://www.google.com";
-                }
-                else
-                {
-                document.querySelector("h2").innerHTML = res.message;
-                }
-            }
-           
-        }
-        form.reset("");
-    }
-</script>
 
 </body>
 
