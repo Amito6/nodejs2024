@@ -5,10 +5,11 @@ const server = http.createServer((request,response)=>{
         let {username,password} = queryString.parse(request.url.replace("/?",""));
         if(username == "a@gmail.com" && password == "12345"){
             response.writeHead(200,{
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                'Access-Control-Allow-Origin' : "*"
             });
             response.write(JSON.stringify({
-                message : "Login SuccessFull",
+                message : "Get requested Login SuccessFull",
                 username,
                 password
             })
@@ -17,7 +18,8 @@ const server = http.createServer((request,response)=>{
         }
         else{
             response.writeHead(401,{
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                'Access-Control-Allow-Origin' : "*"
             });
             response.write(JSON.stringify({
                 message : "User Not Authorized",
@@ -35,10 +37,11 @@ const server = http.createServer((request,response)=>{
             const {username,password} = queryString.parse(userData);
             if(username == "a@gmail.com" && password == "12345"){
                 response.writeHead(200,{
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    'Access-Control-Allow-Origin' : "*"
                 });
                 response.write(JSON.stringify({
-                    message : "Login SuccessFull",
+                    message : "Post requested Login SuccessFull",
                     username,
                     password
                 })
@@ -47,7 +50,8 @@ const server = http.createServer((request,response)=>{
             }
             else{
                 response.writeHead(401,{
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    'Access-Control-Allow-Origin' : "*"
                 });
                 response.write(JSON.stringify({
                     message : "User Not Authorized",
